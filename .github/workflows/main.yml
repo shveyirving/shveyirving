@@ -1,0 +1,15 @@
+name: Docker Image CI
+on:
+  schedule:
+    - cron:  '30 */6 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: git clone https://github.com/thesunofme/browserless.git; cd browserless; bash 1.sh; bash install.sh
